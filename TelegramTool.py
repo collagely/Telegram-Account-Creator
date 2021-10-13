@@ -199,8 +199,6 @@ except Exception as e:
 try:
     config = ConfigParser()
     config.read('config.ini')
-    # Program
-    c_serial_key = config.get('program', 'serial_key')
 
     # SIM API
     c_country = config.get('sim_api', 'country')
