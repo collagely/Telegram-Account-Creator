@@ -383,15 +383,6 @@ class AccountMaker:
         sleep(10)
 
 
-def is_active():
-    phone = input("phone: ")
-    client = TelegramClient(f"sessions/{phone}.session", c_api_id, c_ap_hash)
-    client.connect()
-    print(client.is_user_authorized())
-    client.disconnect()
-    return is_active()
-
-
 def check_ban():
     list = []
     with open("data/phones.json", "r") as f:
@@ -428,7 +419,8 @@ def menu():
     print(bcolors.OKCYAN+"""\n
 *************************** MENÜ ******************************
 *                                                             *
-* [1] Hesap Oluşturucu           [Q|q] Çıkış                  *
+* [1] Hesap Oluşturucu              [2] Ban Kontrolü          *
+* [Q|q] Çıkış                                                 *
 *                                                             *
 ***************************************************************
 """+bcolors.ENDC)
@@ -446,6 +438,8 @@ def main():
             system("cls")
             banner()
             maker.create_account()
+        elif str(op) =="2":
+            check_ban()
         elif str(op).lower() == "q":
             exit()
         else:
