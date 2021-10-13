@@ -206,7 +206,7 @@ try:
     c_country = config.get('sim_api', 'country')
     c_operator = config.get('sim_api', 'operator')
     c_product = config.get('sim_api', 'product')
-    c_token = config.get('sim_api', 'active_ru')
+    c_token = config.get('sim_api', 'active_ru_key')
 
     # Telegram
     c_api_id = config.get('telegram', 'api_id')
