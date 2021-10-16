@@ -381,6 +381,41 @@ class AccountMaker:
         sleep(10)
 
 
+def login_accounts():
+    with open("data/phones.json", "r") as f:
+        data = load(f)
+    phone_data = data["phone_numbers"]
+    for id, number in enumerate(phone_data):
+        print(f"[{id}] {number}")
+    id = input("Lütfen giriş yapmak istediğiniz hesabın numarasını yazınız :> ")
+    if not id:
+        print("Seçim yapmadınız menüye yönlendiriliyorsunuz!!")
+        return menu()
+    selected_number = phone_data[int(id)]
+    print(f"Seçtiğiniz numara: [{selected_number}]\n")
+    print(f"Giriş deneniyor lütfen bekleyin..")
+    client = TelegramClient("sessions/"+selected_number, c_api_id, c_ap_hash)
+    client.connect()
+    if client.is_user_authorized():
+        input("Hesap hazırlandı lütfen giriş yapmak için kod isteyin ve enter uşuna basın (sadece kod isteğinde bulunduğunuzda)")
+        print("Kod bekleniyor...")
+        while True:
+            try:
+                message = client.get_messages(777000, limit=1)
+                code = message[0].message.split(":")[1].split(".")[0]
+                print("Kod alındı!!!!")
+                print(f"Kod:{code}")
+                client.disconnect()
+                break
+            except IndexError:
+                continue
+
+
+
+
+
+
+
 def check_ban():
     list = []
     with open("data/phones.json", "r") as f:
@@ -418,7 +453,7 @@ def menu():
 *************************** MENÜ ******************************
 *                                                             *
 * [1] Hesap Oluşturucu              [2] Ban Kontrolü          *
-* [Q|q] Çıkış                                                 *
+* [Q|q] Çıkış                       [3] Hesaplara giriş yap   *
 *                                                             *
 ***************************************************************
 """+bcolors.ENDC)
