@@ -208,7 +208,7 @@ def login_accounts():
     client = TelegramClient("sessions/"+selected_number, c_api_id, c_ap_hash)
     client.connect()
     if client.is_user_authorized():
-        input("Hesap hazırlandı lütfen giriş yapmak için kod isteyin ve enter uşuna basın (sadece kod isteğinde bulunduğunuzda)")
+        input("Hesap hazırlandı lütfen giriş yapmak için kod isteyin ve enter tuşuna basın (sadece kod isteğinde bulunduğunuzda)")
         print("Kod bekleniyor...")
         while True:
             try:
