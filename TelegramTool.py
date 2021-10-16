@@ -1,6 +1,9 @@
 from json.decoder import JSONDecodeError
 from typing import Counter
 
+from telethon.client import messageparse
+
+
 
 try:
     from random import choice
@@ -189,6 +192,35 @@ class AccountMaker:
               "\n Yeni hesap için 10 saniye bekleniyor..."+self.color.ENDC)
         sleep(10)
 
+def login_accounts():
+    with open("data/phones.json", "r") as f:
+        data = load(f)
+    phone_data = data["phone_numbers"]
+    for id, number in enumerate(phone_data):
+        print(f"[{id}] {number}")
+    id = input("Lütfen giriş yapmak istediğiniz hesabın numarasını yazınız :> ")
+    if not id:
+        print("Seçim yapmadınız menüye yönlendiriliyorsunuz!!")
+        return menu()
+    selected_number = phone_data[int(id)]
+    print(f"Seçtiğiniz numara: [{selected_number}]\n")
+    print(f"Giriş deneniyor lütfen bekleyin..")
+    client = TelegramClient("sessions/"+selected_number, c_api_id, c_ap_hash)
+    client.connect()
+    if client.is_user_authorized():
+        input("Hesap hazırlandı lütfen giriş yapmak için kod isteyin ve enter uşuna basın (sadece kod isteğinde bulunduğunuzda)")
+        print("Kod bekleniyor...")
+        while True:
+            try:
+                message = client.get_messages(777000, limit=1)
+                code = message[0].message.split(":")[1].split(".")[0]
+                print("Kod alındı!!!!")
+                print(f"Kod:{code}")
+                client.disconnect()
+                break
+            except IndexError:
+                continue
+
 
 def check_ban():
     list = []
@@ -222,12 +254,13 @@ def banner():
 """+bcolors.ENDC)
 
 
+
 def menu():
     print(bcolors.OKCYAN+"""\n
 *************************** MENÜ ******************************
 *                                                             *
 * [1] Hesap Oluşturucu              [2] Ban Kontrolü          *
-* [Q|q] Çıkış                                                 *
+* [Q|q] Çıkış                       [3] Hesaplara giriş yap   *
 *                                                             *
 ***************************************************************
 """+bcolors.ENDC)
@@ -247,6 +280,8 @@ def main():
             maker.create_account()
         elif str(op) =="2":
             check_ban()
+        elif str(op) =="3":
+            login_accounts()
         elif str(op).lower() == "q":
             exit()
         else:
