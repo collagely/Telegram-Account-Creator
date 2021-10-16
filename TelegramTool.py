@@ -1,185 +1,6 @@
-countrys = {
-    "Russia": "0",
-    "Ukraine": "1",
-    "Kazakhstan": "2",
-    "China": "3",
-    "Philippines": "4",
-    "Myanmar": "5",
-    "Indonesia": "6",
-    "Malaysia": "7",
-    "Vietnam": "10",
-    "Kyrgyzstan": "11",
-    "Usa": "12 ",
-    "Israel": "13",
-    "HongKong": "14",
-    "Poland": "15",
-    "England": "16",
-    "DCongo": "18",
-    "Nigeria": "19",
-    "Macao": "20",
-    "Egypt": "21",
-    "India": "22",
-    "Ireland": "23",
-    "Cambodia": "24",
-    "Laos": "25",
-    "Haiti": "26",
-    "Ivory": "27",
-    "Gambia": "28",
-    "Serbia": "29",
-    "Yemen": "30",
-    "Southafrica": "31",
-    "Romania": "32",
-    "Colombia": "33",
-    "Estonia": "34",
-    "Canada": "36",
-    "Morocco": "37",
-    "Ghana": "38",
-    "Argentina": "39",
-    "Uzbekistan": "40",
-    "Cameroon": "41",
-    "Chad": "42",
-    "Germany": "43",
-    "Lithuania": "44",
-    "Croatia": "45",
-    "Sweden": "46",
-    "Iraq": "47",
-    "Netherlands": "48",
-    "Latvia": "49",
-    "Austria": "50",
-    "Belarus": "51",
-    "Thailand": "52",
-    "Saudiarabia": "53",
-    "Mexico": "54",
-    "Taiwan": "55",
-    "Spain": "56",
-    "Algeria": "58",
-    "Slovenia": "59",
-    "Bangladesh": "60",
-    "Senegal": "61",
-    "Turkey": "62",
-    "Czech": "63",
-    "Srilanka": "64",
-    "Peru": "65",
-    "Pakistan": "66",
-    "Newzealand": "67",
-    "Guinea": "68",
-    "Mali": "69",
-    "Venezuela": "70",
-    "Ethiopia": "71",
-    "Mongolia": "72",
-    "Brazil": "73",
-    "Afghanistan": "74",
-    "Uganda": "75",
-    "Angola": "76",
-    "Cyprus": "77",
-    "France": "78",
-    "Papua": "79",
-    "Mozambique": "80",
-    "Nepal": "81",
-    "Belgium": "82",
-    "Bulgaria": "83",
-    "Hungary": "84",
-    "Moldova": "85",
-    "Italy": "86",
-    "Paraguay": "87",
-    "Honduras": "88",
-    "Tunisia": "89",
-    "Nicaragua": "90",
-    "Timorleste": "91",
-    "Bolivia": "92",
-    "Costarica": "93",
-    "Guatemala": "94",
-    "Uae": "95",
-    "Zimbabwe": "96",
-    "Puertorico": "97",
-    "Togo": "99",
-    "Kuwait": "100",
-    "Salvador": "101",
-    "Libyan": "102",
-    "Jamaica": "103",
-    "Trinidad": "104",
-    "Ecuador": "105",
-    "Swaziland": "106",
-    "Oman": "107",
-    "Bosnia": "108",
-    "Dominican": "109",
-    "Qatar": "111",
-    "Panama": "112",
-    "Mauritania": "114",
-    "Sierraleone": "115",
-    "Jordan": "116",
-    "Portugal": "117",
-    "Barbados": "118",
-    "Burundi": "119",
-    "Benin": "120",
-    "Brunei": "121",
-    "Bahamas": "122",
-    "Botswana": "123",
-    "Belize": "124",
-    "Caf": "125",
-    "Dominica": "126",
-    "Grenada": "127",
-    "Georgia": "128",
-    "Greece": "129",
-    "Guineabissau": "130",
-    "Guyana": "131",
-    "Iceland": "132",
-    "Comoros": "133",
-    "Saintkitts": "134",
-    "Liberia": "135",
-    "Lesotho": "136",
-    "Malawi": "137",
-    "Namibia": "138",
-    "Niger": "139",
-    "Rwanda": "140",
-    "Slovakia": "141",
-    "Suriname": "142",
-    "Tajikistan": "143",
-    "Monaco": "144",
-    "Bahrain": "145",
-    "Reunion": "146",
-    "Zambia": "147",
-    "Armenia": "148",
-    "Somalia": "149",
-    "Congo": "150",
-    "Chile": "151",
-    "Furkinafaso": "152",
-    "Lebanon": "153",
-    "Gabon": "154",
-    "Albania": "155",
-    "Uruguay": "156",
-    "Mauritius": "157",
-    "Bhutan": "158",
-    "Maldives": "159",
-    "Guadeloupe": "160",
-    "Turkmenistan": "161",
-    "Frenchguiana": "162",
-    "Finland": "163",
-    "Saintlucia": "164",
-    "Luxembourg": "165",
-    "Saintvincentgrenadines": "166",
-    "Equatorialguinea": "167",
-    "Djibouti": "168",
-    "Antiguabarbuda": "169",
-    "Caymanislands": "170",
-    "Montenegro": "171",
-    "Denmark": "172",
-    "Switzerland": "173",
-    "Norway": "174",
-    "Australia": "175",
-    "Eritrea": "176",
-    "Southsudan": "177",
-    "Saotomeandprincipe": "178",
-    "Aruba": "179",
-    "Montserrat": "180",
-    "Anguilla": "181",
-    "Japan": "182",
-    "Northmacedonia": "183",
-    "Seychelles": "184",
-    "Newcaledonia": "185",
-    "Capeverde": "186",
-    "Southkorea": "190"
-}
+from json.decoder import JSONDecodeError
+from typing import Counter
+
 
 try:
     from random import choice
@@ -204,7 +25,7 @@ try:
     c_country = config.get('sim_api', 'country')
     c_operator = config.get('sim_api', 'operator')
     c_product = config.get('sim_api', 'product')
-    c_token = config.get('sim_api', 'active_ru_key')
+    c_token = config.get('sim_api', '5sim_api_key')
 
     # Telegram
     c_api_id = config.get('telegram', 'api_id')
@@ -240,37 +61,34 @@ class bcolors:
 class AccountMaker:
     def __init__(self, token, country, operator, product, api_id, api_hash):
         self.color = bcolors
-        self.country = int(countrys[str(country).capitalize()])
+        self.country = country
         self.token = token
         self.operator = operator
         self.product = product
         self.api_id = api_id
         self.api_hash = api_hash
-        self.buy_param = (('api_key', self.token), ('action', 'getNumber'), (
-            'service', self.product), ('operator', self.operator), ('country', self.country))
-        self.balance_param = (('api_key', self.token),
-                              ('action', 'getBalance'))
-        self.url = 'https://sms-activate.ru/stubs/handler_api.php'
+        self.headers = {'Authorization': 'Bearer ' + token,'Accept': 'application/json',}
+        self.base_url = 'https://5sim.net/v1/user'
+
+
 
     def create_account(self):
-        balance = float(str(get(self.url,
-                                params=self.balance_param).text).split(":")[-1])
+        profile_method = "/profile"
+        buy_method = '/buy/activation/{}/{}/{}'
+        balance = get(self.base_url + profile_method, headers=self.headers).json()['balance']  
+        res = get(self.base_url + buy_method.format(self.country, self.operator, self.product), headers=self.headers)
         try:
             self.counter = 60
-            print(self.color.OKGREEN +
-                  f"\nBalance : {balance}\n"+self.color.ENDC)
-            response = str(
-                get(self.url, params=self.buy_param).text).split(":")
-            phone = response[2]
-            id = response[1]
-            print(self.color.OKCYAN +
-                  f"Numara: {phone}   |   Numara Kimliği: {id}\n" + self.color.ENDC)
+            print(self.color.OKGREEN + f"\nBalance : {balance}\n"+self.color.ENDC)
+            res = res.json()
+            phone = res.get("phone")
+            id = res.get("id")
+            print(self.color.OKCYAN + f"Numara: {phone} | Numara Kimliği: {id}\n" + self.color.ENDC)
             try:
                 client = TelegramClient(
                     f"sessions/{phone}", self.api_id, self.api_hash)
                 client.connect()
                 send_code = client.send_code_request(phone=phone)
-                self.code_sent(id)
                 return self.get_code(client, id, phone, send_code)
             except rpcerrorlist.PhoneNumberBannedError:
                 self.cancel_order(phone=phone, id=id, ban=True)
@@ -285,39 +103,32 @@ class AccountMaker:
             print(self.color.FAIL+"\nÇıkılıyor...\n"+self.color.ENDC)
             sleep(2)
             return main()
-        except IndexError:
-            input(response)
+        except JSONDecodeError:
+            input(res.text)
             return main()
 
-    def code_sent(self, id):
-        params = (('api_key', self.token), ('action', 'setStatus'),
-                  ('status', '1'), ('id', id))
-        get(self.url, params=params)
-
     def get_code(self, client, id, phone, send_code):
-        params = (('api_key', self.token),
-                  ('action', 'getStatus'), ('id', id),)
+        method = "/check/{}"
         while True:
             if self.counter == 0:
                 self.cancel_order(id, phone)
                 return self.create_account()
-            response = str(get(self.url, params=params).text)
+            response = get(self.base_url + method.format(id), headers=self.headers).json()
             print(self.color.OKBLUE+"Kod Bekleniyor....."+self.color.ENDC)
-            if response != "STATUS_WAIT_CODE":
+            if response.get("sms"):
                 try:
-                    code = response.split(":")[-1]
+                    code = response.get("sms")[0].get("code")
                     print(self.color.OKGREEN +
                           f"\nKod Alındı: {code}\n"+self.color.ENDC)
                     client.sign_in(phone=phone, code=code)
                     #client.sign_up(code=code, first_name="Users", phone=phone)
-                    print(client.is_user_authorized())
                     client.disconnect()
                     self.save_number(phone)
                     self.finish(id)
                     self.wait()
                     return self.create_account()
-                except IndexError:
-                    input(response)
+                except JSONDecodeError:
+                    input("bilinmeyen bir hata oluştu")
                     return main()
                 except SessionPasswordNeededError:
                     print(
@@ -344,8 +155,7 @@ class AccountMaker:
                 continue
 
     def cancel_order(self, id, phone, ban=False, flood=False):
-        params = (('api_key', self.token), ('action', 'setStatus'),
-                  ('status', '-1'), ('id', id))
+        method = "/cancel/{}" if not ban else "/ban/{}"
         if ban:
             print(self.color.FAIL +
                   '\n[*] Numara telegram tarafından engellenmiş, Numara iptal ediliyor..'+self.color.ENDC)
@@ -355,7 +165,7 @@ class AccountMaker:
         else:
             print(self.color.FAIL +
                   "\n[*] Belirlenen sürede kod alınamadı, Numara iptal ediliyor.."+self.color.ENDC)
-        if get(self.url, params=params).text == "ACCESS_CANCEL":
+        if get(self.base_url + method.format(id), headers=self.headers):
             self.wait()
         try:
             remove(f"sessions/{phone}.session")
@@ -371,9 +181,8 @@ class AccountMaker:
             dump(data, f)
 
     def finish(self, id):
-        params = (('api_key', self.token), ('action', 'setStatus'),
-                  ('status', '6'), ('id', id))
-        get(self.url, params=params)
+        method = "/finish/{}"
+        get(self.base_url + method.format(id), headers=self.headers)
 
     def wait(self):
         print(self.color.WARNING +
